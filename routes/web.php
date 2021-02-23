@@ -22,6 +22,10 @@ Route::get('/api/books', 'APIBookController@index');
 Route::get('/books', 'BookController@index');
 Route::get('/books/{id}', 'BookController@show');
 
+Route::post('books/{id}/review', 'ReviewController@store');
+
+
+
 
 Route::get('/publishers', 'PublisherController@index');
 

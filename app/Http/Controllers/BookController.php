@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Book;
 use Illuminate\Support\Facades\DB;
 
 class BookController extends Controller
@@ -59,7 +60,9 @@ class BookController extends Controller
     public function show($id){
 
         // $book = DB::table('books')->where('id', $id)->first();
-        $book = DB::table('books')->find($id);
+//        $book = DB::table('books')->find($id);
+
+        $book = Book::find($id);
 
 //        return view('books.show')->with('book', $book);
 //        return view('books.show', ['book' => $book]);
