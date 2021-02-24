@@ -47,8 +47,15 @@ Route::post('/bookshops', 'BookshopController@store');
 Route::get('/bookshops', 'BookshopController@index');
 
 // categories
-Route::resource('categories', 'CategoryController');
+Route::resource('categories', CategoryController::class);
+Route::resource('reservations', ReservationController::class);
+
+
+
 
 Route::patch('/test', function() {
     return 'Pretending a PATCH request';
+
+
+
 });

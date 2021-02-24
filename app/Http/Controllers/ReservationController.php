@@ -3,9 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Category;
+use App\Models\Reservation;
 
-class CategoryController extends Controller
+class ReservationController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,9 +14,8 @@ class CategoryController extends Controller
      */
     public function index()
     {
-       $categories =  Category::get();
-        return view ("categories.index", compact("categories"));
-        
+        $reservations =  Reservation::get();
+        return view ("reservations.index", compact("reservations"));
     }
 
     /**
@@ -26,9 +25,7 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        $category = new Category;
-        return view ('categories.create', compact('category'));
-       
+        //
     }
 
     /**
@@ -39,14 +36,7 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
-        $this->validate($request, [
-            "name" => "required"
-        ]);
-
-        Category::create($request->all());
-        session()->flash("success message", "The category was saved.");
-
-        return redirect(action("CategoryController@index"));
+        //
     }
 
     /**
@@ -57,9 +47,7 @@ class CategoryController extends Controller
      */
     public function show($id)
     {
-        $category = Category::find($id);
-
-        return view("categories.show", compact("category"));
+        //
     }
 
     /**
@@ -70,8 +58,7 @@ class CategoryController extends Controller
      */
     public function edit($id)
     {
-        $category = Category::findOrFail($id);
-        return view("categories.edit", compact("category"));
+        //
     }
 
     /**
@@ -83,16 +70,7 @@ class CategoryController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $this->validate($request, [
-            "name" => "required"
-        ]);
-
-        $category = Category::findOrFail($id);
-        $category->update($request->all());
-        
-        session()->flash("success message", "The category was saved.");
-
-        return redirect(action("CategoryController@index"));
+        //
     }
 
     /**
@@ -103,15 +81,6 @@ class CategoryController extends Controller
      */
     public function destroy($id)
     {
-        $category = Category::findOrFail($id);
-
-        foreach($category->subcategories as $subcategory){
-            $subcategory->delete();
-        }
-
-            $category ->delete();
-
-            return redirect(action("CategoryController@index"));
+        //
     }
-    
 }

@@ -9,6 +9,8 @@ class Category extends Model
 {
     use HasFactory;
 
+    protected $fillable = ["name"];
+
     public function subcategories(){
         return $this->hasMany(Subcategory::class);
     }
@@ -16,4 +18,6 @@ class Category extends Model
     public function books(){
         return $this->hasMany(Book::class);
     }
+
+
 }
