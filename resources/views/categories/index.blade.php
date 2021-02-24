@@ -1,32 +1,23 @@
-@extends('layouts.main', ['title' => 'List of categories'])
 
-@section('content')
+<h1>Eshop management</h1>
+<h2>Categories</h2>
 
-<a href="{{ action ("CategoryController@create") }}"><button>Create category</button></a>
+<a href="{{ action('CategoryController@create') }}">Create</a>
 
-<ul>
+<div style="width: 30rem;">
+@foreach($categories as $category)
+    <div style="display: flex; justify-content: space-between; margin-bottom: 2rem">
 
-    @foreach ($categories as $category)
-    
+        <h3>{{ $category->name }}</h3>
 
-        <li>
-            <a href="{{ action("CategoryController@show", $category->id) }}">{{ $category->name }}</a>
-            <a href="{{ action("CategoryController@edit", $category->id) }}"><button>EDIT</button></a>
+        <a href="{{ action('CategoryController@edit', $category->id) }}">Edit</a>
 
-            <form method="post" action="{{ action('CategoryController@destroy', $category->id) }}">      
-                
-                
-            @csrf            
-            @method('delete') 
-            <input type="submit" value="Delete">        
-        
-            </form>
-        
-        
-        </li>
+        <form method="post" action="{{ action('CategoryController@destroy', $category->id) }}">
+            @csrf
+            @method('delete')
+            <input type="submit" value="Delete">
+        </form>
 
-
-    @endforeach
-</ul>
-
-@endsection
+    </div>
+@endforeach
+</div>

@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Publisher;
-use http\Client\Request;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
 class PublisherController extends Controller
@@ -54,14 +54,17 @@ class PublisherController extends Controller
 
         // validation passed...
 
-        // get new Publisher object
-        $publisher = new Publisher;
+        Publisher::create($request->all());
 
-        // fill it with data
-        $publisher->title = $request->input('title');
-
-        // saving (making a SQL insert query)
-        $publisher->save();
+//        Without Mass assignment
+//        // get new Publisher object
+//        $publisher = new Publisher;
+//
+//        // fill it with data
+//        $publisher->title = $request->input('title');
+//
+//        // saving (making a SQL insert query)
+//        $publisher->save();
 
         // inform the user of success
         session()->flash('success_message', 'The publisher was saved.');

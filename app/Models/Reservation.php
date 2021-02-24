@@ -9,11 +9,21 @@ class Reservation extends Model
 {
     use HasFactory;
 
-    public function books(){
+
+    protected $fillable = [
+        'book_id',
+        'from',
+        'to'
+    ];
+
+    public function book()
+    {
         return $this->belongsTo(Book::class);
     }
 
-    public function users(){
+    public function user()
+    {
         return $this->belongsTo(User::class);
     }
 }
+

@@ -3,10 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\Category;
+use App\Models\Subcategory;
 use Illuminate\Http\Request;
-use App\Models\Category;
 
-class CategoryController extends Controller
+class SubcategoryController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,10 +15,9 @@ class CategoryController extends Controller
      */
     public function index()
     {
+        $subcategories = Subcategory::all();
 
-        $categories = Category::all();
-
-        return view('categories.index', compact('categories'));
+        return view('subcategories.index', compact('subcategories'));
     }
 
     /**
@@ -28,9 +27,9 @@ class CategoryController extends Controller
      */
     public function create()
     {
+        $categories = Category::all();
 
-        return view('categories.create');
-
+        return view('subcategories.create', compact('categories'));
     }
 
     /**
@@ -42,14 +41,13 @@ class CategoryController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
-
-            'name' => 'required|string|max:255'
+            'name' => 'required|string|max:255',
+            'category_id' => 'required|exists:categories,id'
         ]);
 
-        $category = Category::create($request->all());
+        $subcategory = Subcategory::create($request->all());
 
-        return redirect(action('CategoryController@index'));
-
+        return redirect(action('SubcategoryController@index'));
     }
 
     /**
@@ -60,11 +58,9 @@ class CategoryController extends Controller
      */
     public function show($id)
     {
+        $subcategory = Subcategory::findOrFail($id);
 
-        $category = Category::findOrFail($id);
-
-        return view('categories.show', compact('category'));
-
+        return view('subcategories.show', compact('category'));
     }
 
     /**
@@ -75,11 +71,11 @@ class CategoryController extends Controller
      */
     public function edit($id)
     {
-        $category = Category::findOrFail($id);
+        $subcategory = Subcategory::findOrFail($id);
+        $categories = Category::all();
 
 
-        return view('categories.edit', compact('category'));
-
+        return view('subcategories.edit', compact('subcategory', 'categories'));
     }
 
     /**
@@ -91,17 +87,17 @@ class CategoryController extends Controller
      */
     public function update(Request $request, $id)
     {
-
-        $category = Category::findOrFail($id);
+        $subcategory = Subcategory::findOrFail($id);
 
         $this->validate($request, [
-            'name' => 'required|string|max:255'
+            'name' => 'required|string|max:255',
+            'category_id' => 'required|exists:categories,id'
         ]);
 
-        $category = $category->update($request->all());
 
-        return redirect(action('CategoryController@index'));
+        $subcategory = $subcategory->update($request->all());
 
+        return redirect(action('SubcategoryController@index'));
     }
 
     /**
@@ -112,13 +108,10 @@ class CategoryController extends Controller
      */
     public function destroy($id)
     {
-        $category = Category::findOrFail($id);
+        $subcategory = Subcategory::findOrFail($id);
 
+        $subcategory->delete();
 
-        $category->delete();
-
-        return redirect(action('CategoryController@index'));
-
+        return redirect(action('SubcategoryController@index'));
     }
-    
 }

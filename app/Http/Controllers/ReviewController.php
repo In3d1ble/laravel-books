@@ -40,11 +40,15 @@ class ReviewController extends Controller
             'rating' => 'required|numeric|min:0|max:100',
         ]);
 
-        $review = new Review();
-        $review->book_id = $id;
-        $review->text = $request->input('text');
-        $review->rating = $request->input('rating');
-        $review->save();
+        $data = $request->all();
+        $data['book_id'] = $id;
+        $review = Review::create($data);
+
+//        $review = new Review();
+//        $review->book_id = $id;
+//        $review->text = $request->input('text');
+//        $review->rating = $request->input('rating');
+//        $review->save();
 
         return redirect( action('BookController@show', $id) );
     }
@@ -89,8 +93,8 @@ class ReviewController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($book_id, $review_id)
     {
-        //
+
     }
 }
