@@ -25,7 +25,8 @@ class ReservationController extends Controller
      */
     public function create()
     {
-        //
+        $books =  Reservation::get();
+        return view ("reservations.index", compact("reservations"));
     }
 
     /**

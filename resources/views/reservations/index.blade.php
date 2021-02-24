@@ -2,22 +2,30 @@
 
 @section('content')
 
-    @foreach ($reservations as $reservation)
         
 
-
-        <table class="table table-striped">
-            <tr>
-            <th>{{ action('ReservationController@index', $reservation->book_id) }}</th>
-            <th>{{ action('ReservationController@index', $reservation->user_id) }}</th>
-            <th>{{ action('ReservationController@index', $reservation->from) }}</th>
-            <th>{{ action('ReservationController@index', $reservation->to) }}</th>
-            </tr>
-        </table>
-
+    <table class="table table-striped">
+        <tr>
+        <th>Book</th>
+        <th>User</th>
+        <th>From</th>
+        <th>To</th>
+        </tr>
+      
 
 
-    @endforeach
 
 
+        @foreach ($reservations as $reservation)
+
+        <tr>
+            <td>{{ $reservation->book->title }}</td>
+            <td>{{ $reservation->book->authors }}</td>
+            <td>{{ $reservation->from }}</td>
+            <td>{{ $reservation->to }}</td>
+        </tr>
+
+        @endforeach
+
+    </table>
 @endsection
