@@ -28,6 +28,8 @@ Route::get('books/{book_id}/reviews/{review_id}', 'ReviewController@destroy');
 
 // orders
 Route::post('/order/{book_id}', 'OrderController@order');
+Route::get('/orders', 'OrderController@index');
+Route::get('/orders/{order_id}', 'OrderController@show');
 
 
 Route::get('/publishers', 'PublisherController@index');

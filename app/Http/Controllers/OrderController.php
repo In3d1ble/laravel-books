@@ -36,4 +36,20 @@ class OrderController extends Controller
 
         return redirect()->action('BookController@show', $book->id);
     }
+
+
+    public function index()
+    {
+        $orders = Order::orderBy('created_at', 'desc')->get();
+
+        return view('orders.index', compact('orders'));
+    }
+
+    public function show($order_id)
+    {
+        $order = Order::findOrFail($order_id);
+
+        return view('orders.show', compact('order'));
+    }
 }
+
