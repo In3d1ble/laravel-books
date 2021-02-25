@@ -15,7 +15,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome');
-});
+})->name('home');
 
 Route::get('/api/books', 'APIBookController@index');
 
@@ -26,8 +26,8 @@ Route::post('books/{id}/review', 'ReviewController@store');
 
 Route::get('books/{book_id}/reviews/{review_id}', 'ReviewController@destroy');
 
+// orders
 Route::post('/order/{book_id}', 'OrderController@order');
-
 
 
 Route::get('/publishers', 'PublisherController@index');
@@ -60,6 +60,8 @@ Route::patch('/test', function() {
 });
 
 Route::get('reservations', 'ReservationController@index');
-
-Route::get('reservations/create', 'ReservationController@create')->middleware('auth');
+Route::get('reservations/create', 'ReservationController@create');
+//    ->middleware('auth');
 Route::post('reservations', 'ReservationController@store');
+
+//    ->middleware('auth');

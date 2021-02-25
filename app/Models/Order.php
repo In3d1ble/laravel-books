@@ -4,7 +4,12 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+<<<<<<< HEAD
 Use App\Models\User;
+=======
+use App\Models\Book;
+use App\Models\User;
+>>>>>>> refs/remotes/origin/main
 
 class Order extends Model
 {
@@ -19,4 +24,8 @@ class Order extends Model
     {
         return $this->belongsToMany(Book::class);
     }
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> refs/remotes/origin/main

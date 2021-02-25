@@ -14,12 +14,23 @@ class Book extends Model
         return $this->hasMany(Review::class);
     }
 
-    public function reservations(){
+
+    public function reservations()
+    {
         return $this->hasMany(Reservation::class);
     }
+<<<<<<< HEAD
+=======
+}
+>>>>>>> refs/remotes/origin/main
 
     public function orders()
     {
         $this->belongsToMany(Order::class);
     }
+<<<<<<< HEAD
 }
+=======
+}
+
+>>>>>>> refs/remotes/origin/main
