@@ -15,7 +15,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome');
-});
+})->name('home');
 
 Route::get('/api/books', 'APIBookController@index');
 
@@ -58,5 +58,8 @@ Route::patch('/test', function() {
 
 Route::get('reservations', 'ReservationController@index');
 Route::get('reservations/create', 'ReservationController@create');
+//    ->middleware('auth');
 Route::post('reservations', 'ReservationController@store');
+
+//    ->middleware('auth');
 
