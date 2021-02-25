@@ -27,3 +27,12 @@
         <strong>{{ $review->rating }} / 100</strong>
     </div>
 @endforeach
+
+<h2>Order this book</h2>
+<form action="{{ action("OrderController@order"), $book->id }}" method="post">
+    @csrf
+
+    <input type="number" name="quantity" value="{{ old('quantity') }}">
+    <input type="submit" value="Order!">
+
+</form>

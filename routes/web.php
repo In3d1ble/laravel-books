@@ -26,6 +26,8 @@ Route::post('books/{id}/review', 'ReviewController@store');
 
 Route::get('books/{book_id}/reviews/{review_id}', 'ReviewController@destroy');
 
+Route::post('/order/{book_id}', 'OrderController@order');
+
 
 
 Route::get('/publishers', 'PublisherController@index');
@@ -52,11 +54,12 @@ Route::get('/bookshops', 'BookshopController@index');
 Route::resource('categories', 'CategoryController');
 Route::resource('subcategories', 'SubcategoryController');
 
+
 Route::patch('/test', function() {
     return 'Pretending a PATCH request';
 });
 
 Route::get('reservations', 'ReservationController@index');
-Route::get('reservations/create', 'ReservationController@create');
-Route::post('reservations', 'ReservationController@store');
 
+Route::get('reservations/create', 'ReservationController@create')->middleware('auth');
+Route::post('reservations', 'ReservationController@store');

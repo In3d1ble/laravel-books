@@ -1,5 +1,9 @@
 <h1>Create reservation</h1>
 
+@if(!Auth::user())
+    <h2>You must be authenticated</h2>
+@endif
+
 @if ($errors->any())
     <div>
         <h4>Validation errors!</h4>

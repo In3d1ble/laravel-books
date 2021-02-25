@@ -13,8 +13,12 @@
     </tr>
     @foreach($reservations as $reservation)
         <tr>
-            <td></td>
             <td>{{ $reservation->book->title }}</td>
+            <td>
+                @if($reservation->user)
+                {{ $reservation->user->name }}
+                @endif
+            </td>
             <td>{{ $reservation->from }}</td>
             <td>{{ $reservation->to }}</td>
         </tr>
