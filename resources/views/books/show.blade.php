@@ -1,7 +1,22 @@
+@extends('layouts.main')
+
+@section('content')
+
 <h1>{{ $book->title }}</h1>
 <h2>{{ $book->authors }}</h2>
 
 <img src="{{ $book->image }}" alt="{{ $book->title }} - cover">
+
+<h2>Order this book</h2>
+<form action="{{ action('OrderController@order', $book->id) }}" method="post">
+    @csrf
+
+    <input type="number" name="quantity" value="{{ old('quantity') }}">
+
+    <input type="submit" value="Order!">
+
+</form>
+
 
 <a href="{{ action('BookController@index') }}">
     Back to list of books
@@ -27,3 +42,5 @@
         <strong>{{ $review->rating }} / 100</strong>
     </div>
 @endforeach
+
+@endsection

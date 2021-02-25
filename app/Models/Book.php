@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\Order;
 
 class Book extends Model
 {
@@ -13,7 +14,16 @@ class Book extends Model
         return $this->hasMany(Review::class);
     }
 
-    public function reservations(){
+
+    public function reservations()
+    {
         return $this->hasMany(Reservation::class);
     }
 }
+
+    public function orders()
+    {
+        $this->belongsToMany(Order::class);
+    }
+}
+
